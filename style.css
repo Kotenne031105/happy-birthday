@@ -1,0 +1,2558 @@
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #05051a;
+
+    color:
+        white;
+
+}
+
+
+
+/* =====================================================
+   BẦU TRỜI SAO
+===================================================== */
+
+#stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(90, 80, 255, 0.16),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 100, 200, 0.14),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            180deg,
+            #020218,
+            #09052b,
+            #12052d
+        );
+
+    overflow:
+        hidden;
+
+    z-index:
+        1;
+
+}
+
+
+
+/* =====================================================
+   NGÔI SAO
+===================================================== */
+
+.star {
+
+    position:
+        absolute;
+
+    background:
+        white;
+
+    border-radius:
+        50%;
+
+    box-shadow:
+
+        0 0 5px white,
+
+        0 0 10px
+        rgba(255, 255, 255, 0.8);
+
+    animation:
+
+        twinkle
+        2s
+        infinite
+        ease-in-out;
+
+}
+
+
+@keyframes twinkle {
+
+    0% {
+
+        opacity:
+            0.2;
+
+        transform:
+            scale(0.7);
+
+    }
+
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.3);
+
+    }
+
+
+    100% {
+
+        opacity:
+            0.2;
+
+        transform:
+            scale(0.7);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   ÁNH SÁNG THEO CHUỘT
+===================================================== */
+
+#cursor-light {
+
+    position:
+        fixed;
+
+    width:
+        250px;
+
+    height:
+        250px;
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(150, 130, 255, 0.16),
+            rgba(100, 80, 255, 0.08) 30%,
+            transparent 70%
+        );
+
+    z-index:
+        2;
+
+}
+
+
+
+/* =====================================================
+   MÀN HÌNH CHUNG
+===================================================== */
+
+.screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   MÀN HÌNH 1
+===================================================== */
+
+.welcome-screen {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+
+    z-index: 3;
+
+}
+
+
+.welcome-text {
+
+    width:
+        90%;
+
+}
+
+
+.small-text {
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            18px
+        );
+
+    letter-spacing:
+        3px;
+
+    margin-bottom:
+        20px;
+
+    color:
+        #ddd9ff;
+
+    opacity:
+        0;
+
+    animation:
+
+        slideUp
+        1.5s
+        ease
+        forwards;
+
+}
+
+
+.welcome-text h1 {
+
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            90px
+        );
+
+    letter-spacing:
+        clamp(
+            3px,
+            0.8vw,
+            8px
+        );
+
+    font-weight:
+        700;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #d7c8ff,
+            #ffffff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    text-shadow:
+
+        0 0 20px
+        rgba(180, 160, 255, 0.5);
+
+    opacity:
+        0;
+
+    animation:
+
+        titleAppear
+        2s
+        ease
+        0.5s
+        forwards;
+
+}
+
+
+.sub-text {
+
+    margin-top:
+        25px;
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            17px
+        );
+
+    color:
+        #c8c4e8;
+
+    letter-spacing:
+        1px;
+
+    opacity:
+        0;
+
+    animation:
+
+        slideUp
+        1.5s
+        ease
+        1.2s
+        forwards;
+
+}
+
+
+
+/* =====================================================
+   HIỆU ỨNG CHỮ
+===================================================== */
+
+@keyframes titleAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(40px)
+            scale(0.9);
+
+        filter:
+            blur(10px);
+
+    }
+
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+@keyframes slideUp {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   MÀN HÌNH 2
+===================================================== */
+
+.date-screen {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    opacity:
+        0;
+
+    transform:
+        scale(1.08);
+
+    pointer-events:
+        none;
+
+    z-index:
+        4;
+
+}
+
+
+.date-content {
+
+    width:
+        min(800px, 90%);
+
+    padding:
+        clamp(30px, 5vw, 50px)
+        clamp(20px, 6vw, 70px);
+
+    border-radius:
+        25px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    backdrop-filter:
+        blur(8px);
+
+    box-shadow:
+
+        0 0 50px
+        rgba(140, 120, 255, 0.15);
+
+}
+
+
+.date-small {
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            17px
+        );
+
+    letter-spacing:
+        clamp(
+            2px,
+            0.5vw,
+            4px
+        );
+
+    color:
+        #dcd7ff;
+
+    margin-bottom:
+        25px;
+
+}
+
+
+.date-content h1 {
+
+    font-size:
+        clamp(
+            28px,
+            6vw,
+            65px
+        );
+
+    letter-spacing:
+        clamp(
+            3px,
+            0.8vw,
+            8px
+        );
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.birthday-date {
+
+    font-size:
+        clamp(
+            45px,
+            10vw,
+            110px
+        );
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        clamp(
+            3px,
+            0.8vw,
+            8px
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #d5c5ff,
+            #ffffff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    animation:
+
+        dateGlow
+        2.5s
+        infinite
+        ease-in-out;
+
+}
+
+
+.date-message {
+
+    margin-top:
+        25px;
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            17px
+        );
+
+    letter-spacing:
+        2px;
+
+    color:
+        #c9c5e8;
+
+}
+
+
+@keyframes dateGlow {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+        filter:
+            brightness(1);
+
+    }
+
+
+    50% {
+
+        transform:
+            scale(1.03);
+
+        filter:
+            brightness(1.3);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-screen {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    background:
+        black;
+
+    opacity:
+        0;
+
+    transform:
+        scale(1.05);
+
+    pointer-events:
+        none;
+
+    z-index:
+        8;
+
+}
+
+
+#birthday-video {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+}
+
+
+.video-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        rgba(0, 0, 0, 0.08);
+
+    pointer-events:
+        none;
+
+}
+
+
+
+/* =====================================================
+   MÀN HÌNH 3
+===================================================== */
+
+.birthday-screen {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    opacity:
+        0;
+
+    transform:
+        scale(1.08);
+
+    pointer-events:
+        none;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 120, 210, 0.18),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #16051f,
+            #2b0b3f,
+            #110522
+        );
+
+    z-index:
+        4;
+
+}
+
+
+
+/* =====================================================
+   ÁNH SÁNG NỀN
+===================================================== */
+
+.birthday-glow {
+
+    position:
+        absolute;
+
+    width:
+        450px;
+
+    height:
+        450px;
+
+    border-radius:
+        50%;
+
+    filter:
+        blur(80px);
+
+    pointer-events:
+        none;
+
+    animation:
+
+        glowMove
+        7s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+.glow-1 {
+
+    left:
+        -150px;
+
+    top:
+        10%;
+
+    background:
+        rgba(255, 70, 180, 0.18);
+
+}
+
+
+.glow-2 {
+
+    right:
+        -150px;
+
+    top:
+        20%;
+
+    background:
+        rgba(120, 90, 255, 0.2);
+
+    animation-delay:
+        2s;
+
+}
+
+
+.glow-3 {
+
+    left:
+        35%;
+
+    bottom:
+        -250px;
+
+    background:
+        rgba(255, 170, 80, 0.15);
+
+    animation-delay:
+        4s;
+
+}
+
+
+@keyframes glowMove {
+
+    0% {
+
+        transform:
+            translate(0, 0)
+            scale(0.9);
+
+        opacity:
+            0.5;
+
+    }
+
+
+    100% {
+
+        transform:
+            translate(60px, -40px)
+            scale(1.2);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   KHUNG NỘI DUNG
+===================================================== */
+
+.birthday-content {
+
+    position:
+        relative;
+
+    z-index:
+        10;
+
+    width:
+        min(900px, 88%);
+
+    padding:
+        clamp(25px, 4vw, 40px)
+        clamp(20px, 6vw, 70px);
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+
+        0 0 50px
+        rgba(255, 100, 210, 0.15);
+
+    animation:
+
+        birthdayAppear
+        2s
+        ease
+        forwards;
+
+}
+
+
+.birthday-crown {
+
+    font-size:
+        clamp(
+            20px,
+            3vw,
+            25px
+        );
+
+    margin-bottom:
+        15px;
+
+    animation:
+
+        crownFloat
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+.birthday-small {
+
+    font-size:
+        clamp(
+            13px,
+            2vw,
+            18px
+        );
+
+    letter-spacing:
+        clamp(
+            2px,
+            0.5vw,
+            5px
+        );
+
+    color:
+        #f2ddff;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.birthday-content h1 {
+
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            95px
+        );
+
+    line-height:
+        1.12;
+
+    letter-spacing:
+        clamp(
+            2px,
+            0.6vw,
+            6px
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffd1f0,
+            #e1d2ff,
+            #ffffff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    animation:
+
+        titleGlow
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+.birthday-line {
+
+    width:
+        180px;
+
+    max-width:
+        50%;
+
+    height:
+        2px;
+
+    margin:
+        25px auto;
+
+    background:
+        rgba(255, 255, 255, 0.6);
+
+    box-shadow:
+
+        0 0 12px
+        rgba(255, 180, 240, 0.8);
+
+}
+
+
+.birthday-message {
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            18px
+        );
+
+    line-height:
+        1.8;
+
+    letter-spacing:
+        1px;
+
+    color:
+        #eee8ff;
+
+}
+
+
+@keyframes birthdayAppear {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(60px)
+            scale(0.85);
+
+        filter:
+            blur(15px);
+
+    }
+
+
+    100% {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+
+        filter:
+            brightness(1);
+
+    }
+
+
+    50% {
+
+        filter:
+            brightness(1.35);
+
+    }
+
+}
+
+
+@keyframes crownFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BÓNG BAY
+===================================================== */
+
+.balloon {
+
+    position:
+        absolute;
+
+    font-size:
+        80px;
+
+    z-index:
+        5;
+
+    filter:
+
+        drop-shadow(
+            0 10px 15px
+            rgba(0, 0, 0, 0.3)
+        );
+
+    animation:
+
+        balloonFloat
+        5s
+        ease-in-out
+        infinite;
+
+}
+
+
+.balloon-1 {
+
+    left:
+        5%;
+
+    top:
+        15%;
+
+}
+
+
+.balloon-2 {
+
+    left:
+        14%;
+
+    top:
+        55%;
+
+    font-size:
+        60px;
+
+    animation-delay:
+        1s;
+
+}
+
+
+.balloon-3 {
+
+    left:
+        2%;
+
+    bottom:
+        8%;
+
+    font-size:
+        55px;
+
+    animation-delay:
+        2s;
+
+}
+
+
+.balloon-4 {
+
+    right:
+        5%;
+
+    top:
+        14%;
+
+    animation-delay:
+        1.5s;
+
+}
+
+
+.balloon-5 {
+
+    right:
+        14%;
+
+    top:
+        55%;
+
+    font-size:
+        60px;
+
+    animation-delay:
+        3s;
+
+}
+
+
+.balloon-6 {
+
+    right:
+        2%;
+
+    bottom:
+        8%;
+
+    font-size:
+        55px;
+
+    animation-delay:
+        2.5s;
+
+}
+
+
+@keyframes balloonFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(-3deg);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-25px)
+            rotate(3deg);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BÁNH
+===================================================== */
+
+.cake-area {
+
+    position:
+        absolute;
+
+    bottom:
+        -5px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:
+        12;
+
+}
+
+
+.cake {
+
+    font-size:
+        85px;
+
+    filter:
+
+        drop-shadow(
+            0 0 15px
+            rgba(255, 170, 230, 0.5)
+        );
+
+    animation:
+
+        cakeFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes cakeFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   HỘP QUÀ
+===================================================== */
+
+.gift {
+
+    position:
+        absolute;
+
+    bottom:
+        25px;
+
+    font-size:
+        65px;
+
+    z-index:
+        9;
+
+    animation:
+
+        giftFloat
+        3.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+.gift-left {
+
+    left:
+        22%;
+
+}
+
+
+.gift-right {
+
+    right:
+        22%;
+
+    animation-delay:
+        1.5s;
+
+}
+
+
+@keyframes giftFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(-4deg);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-12px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LẤP LÁNH
+===================================================== */
+
+.sparkle {
+
+    position:
+        absolute;
+
+    color:
+        white;
+
+    font-size:
+        30px;
+
+    text-shadow:
+
+        0 0 10px white,
+
+        0 0 20px
+        #ffb5e8;
+
+    animation:
+
+        sparkle
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+.sparkle-1 {
+
+    left:
+        20%;
+
+    top:
+        20%;
+
+}
+
+
+.sparkle-2 {
+
+    left:
+        30%;
+
+    top:
+        75%;
+
+    animation-delay:
+        0.5s;
+
+}
+
+
+.sparkle-3 {
+
+    right:
+        25%;
+
+    top:
+        25%;
+
+    animation-delay:
+        1s;
+
+}
+
+
+.sparkle-4 {
+
+    right:
+        18%;
+
+    top:
+        70%;
+
+    animation-delay:
+        1.5s;
+
+}
+
+
+.sparkle-5 {
+
+    left:
+        8%;
+
+    top:
+        40%;
+
+    animation-delay:
+        0.8s;
+
+}
+
+
+.sparkle-6 {
+
+    right:
+        8%;
+
+    top:
+        42%;
+
+    animation-delay:
+        1.8s;
+
+}
+
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+
+        opacity:
+            0.2;
+
+        transform:
+            scale(0.6)
+            rotate(0deg);
+
+    }
+
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.3)
+            rotate(90deg);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PHÁO GIẤY
+===================================================== */
+
+.confetti {
+
+    position:
+        absolute;
+
+    top:
+        -20px;
+
+    width:
+        8px;
+
+    height:
+        14px;
+
+    border-radius:
+        2px;
+
+    z-index:
+        20;
+
+    animation:
+
+        confettiFall
+        linear
+        forwards;
+
+}
+
+
+@keyframes confettiFall {
+
+    0% {
+
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity:
+            1;
+
+    }
+
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:
+            0;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   NÚT TIẾP TỤC
+===================================================== */
+
+.button-container {
+
+    position:
+        fixed;
+
+    right:
+        35px;
+
+    bottom:
+        30px;
+
+    z-index:
+        20;
+
+}
+
+
+#continue-btn {
+
+    padding:
+        14px 24px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.3);
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color:
+        white;
+
+    font-size:
+        16px;
+
+    cursor:
+        pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        all 0.5s ease;
+
+}
+
+
+#continue-btn:hover {
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+
+        0 0 20px
+        rgba(180, 160, 255, 0.4);
+
+}
+
+
+#continue-btn:active {
+
+    transform:
+        scale(0.95);
+
+}
+
+
+
+/* =====================================================
+   =====================================================
+   ĐIỆN THOẠI
+   =====================================================
+===================================================== */
+
+@media (max-width: 600px) {
+
+
+    /* -----------------------------------------------
+       Ánh sáng chuột tắt trên điện thoại
+    ------------------------------------------------ */
+
+    #cursor-light {
+
+        display:
+            none;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Màn 1
+    ------------------------------------------------ */
+
+    .welcome-text {
+
+        width:
+            92%;
+
+    }
+
+
+    .small-text {
+
+        font-size:
+            13px;
+
+        letter-spacing:
+            2px;
+
+        margin-bottom:
+            16px;
+
+    }
+
+
+    .welcome-text h1 {
+
+        font-size:
+            40px;
+
+        letter-spacing:
+            3px;
+
+    }
+
+
+    .sub-text {
+
+        margin-top:
+            18px;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.6;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Màn 2
+    ------------------------------------------------ */
+
+    .date-content {
+
+        width:
+            90%;
+
+        padding:
+            35px 15px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .date-small {
+
+        font-size:
+            13px;
+
+        letter-spacing:
+            2px;
+
+        margin-bottom:
+            18px;
+
+    }
+
+
+    .date-content h1 {
+
+        font-size:
+            29px;
+
+        letter-spacing:
+            4px;
+
+        margin-bottom:
+            15px;
+
+    }
+
+
+    .birthday-date {
+
+        font-size:
+            47px;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    .date-message {
+
+        font-size:
+            13px;
+
+        margin-top:
+            18px;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Video
+    ------------------------------------------------ */
+
+    #birthday-video {
+
+        width:
+            100vw;
+
+        height:
+            100vh;
+
+        object-fit:
+            cover;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Màn 3
+    ------------------------------------------------ */
+
+    .birthday-content {
+
+        width:
+            86%;
+
+        padding:
+            22px 14px 82px;
+
+        border-radius:
+            25px;
+
+    }
+
+
+    .birthday-crown {
+
+        font-size:
+            19px;
+
+        margin-bottom:
+            9px;
+
+    }
+
+
+    .birthday-small {
+
+        font-size:
+            13px;
+
+        letter-spacing:
+            2px;
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .birthday-content h1 {
+
+        font-size:
+            37px;
+
+        line-height:
+            1.15;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    .birthday-line {
+
+        width:
+            100px;
+
+        margin:
+            17px auto;
+
+    }
+
+
+    .birthday-message {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.65;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Bóng bay
+    ------------------------------------------------ */
+
+    .balloon {
+
+        font-size:
+            48px;
+
+    }
+
+
+    .balloon-1 {
+
+        left:
+            -2%;
+
+        top:
+            8%;
+
+    }
+
+
+    .balloon-2 {
+
+        left:
+            1%;
+
+        top:
+            42%;
+
+        font-size:
+            40px;
+
+    }
+
+
+    .balloon-3 {
+
+        left:
+            1%;
+
+        bottom:
+            5%;
+
+        font-size:
+            38px;
+
+    }
+
+
+    .balloon-4 {
+
+        right:
+            -2%;
+
+        top:
+            8%;
+
+    }
+
+
+    .balloon-5 {
+
+        right:
+            1%;
+
+        top:
+            42%;
+
+        font-size:
+            40px;
+
+    }
+
+
+    .balloon-6 {
+
+        right:
+            1%;
+
+        bottom:
+            5%;
+
+        font-size:
+            38px;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Bánh
+    ------------------------------------------------ */
+
+    .cake-area {
+
+        bottom:
+            1px;
+
+    }
+
+
+    .cake {
+
+        font-size:
+            60px;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Quà
+    ------------------------------------------------ */
+
+    .gift {
+
+        bottom:
+            14px;
+
+        font-size:
+            40px;
+
+    }
+
+
+    .gift-left {
+
+        left:
+            7%;
+
+    }
+
+
+    .gift-right {
+
+        right:
+            7%;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Lấp lánh
+    ------------------------------------------------ */
+
+    .sparkle {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .sparkle-1 {
+
+        left:
+            17%;
+
+        top:
+            17%;
+
+    }
+
+
+    .sparkle-2 {
+
+        left:
+            18%;
+
+        top:
+            70%;
+
+    }
+
+
+    .sparkle-3 {
+
+        right:
+            17%;
+
+        top:
+            18%;
+
+    }
+
+
+    .sparkle-4 {
+
+        right:
+            18%;
+
+        top:
+            70%;
+
+    }
+
+
+    .sparkle-5 {
+
+        left:
+            7%;
+
+        top:
+            31%;
+
+    }
+
+
+    .sparkle-6 {
+
+        right:
+            7%;
+
+        top:
+            31%;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       Nút
+    ------------------------------------------------ */
+
+    .button-container {
+
+        right:
+            18px;
+
+        bottom:
+            18px;
+
+    }
+
+
+    #continue-btn {
+
+        padding:
+            12px 20px;
+
+        font-size:
+            14px;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   ĐIỆN THOẠI RẤT NHỎ
+===================================================== */
+
+@media (max-width: 380px) {
+
+
+    .welcome-text h1 {
+
+        font-size:
+            34px;
+
+    }
+
+
+    .birthday-content {
+
+        width:
+            88%;
+
+        padding:
+            19px 10px 78px;
+
+    }
+
+
+    .birthday-content h1 {
+
+        font-size:
+            32px;
+
+    }
+
+
+    .birthday-message {
+
+        font-size:
+            12.5px;
+
+    }
+
+
+    .balloon {
+
+        font-size:
+            36px;
+
+    }
+
+
+    .gift {
+
+        font-size:
+            33px;
+
+    }
+
+
+    .cake {
+
+        font-size:
+            52px;
+
+    }
+
+
+    .birthday-small {
+
+        font-size:
+            12px;
+
+    }
+
+}
+
+/* =====================================================
+   MÀN HÌNH 4
+===================================================== */
+
+.warm-screen {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: scale(1.08);
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(120, 180, 255, 0.18),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #07152b,
+            #102b4d,
+            #07111f
+        );
+
+    z-index: 30;
+
+}
+
+
+/* Nội dung */
+
+.warm-content {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: min(850px, 88%);
+
+    padding: clamp(30px, 5vw, 55px)
+             clamp(20px, 6vw, 70px);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 50px
+        rgba(100, 170, 255, 0.15);
+
+    animation:
+        warmAppear 1.5s ease forwards;
+
+}
+
+
+/* Bông tuyết */
+
+.warm-icon {
+
+    font-size: clamp(35px, 6vw, 55px);
+
+    margin-bottom: 15px;
+
+    animation:
+        snowFloat 3s ease-in-out infinite;
+
+}
+
+
+/* Chữ nhỏ */
+
+.warm-small {
+
+    font-size: clamp(14px, 2vw, 18px);
+
+    letter-spacing: 3px;
+
+    color: #d9eaff;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* Tiêu đề */
+
+.warm-content h1 {
+
+    font-size: clamp(32px, 6vw, 70px);
+
+    line-height: 1.2;
+
+    letter-spacing: clamp(1px, 0.4vw, 5px);
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #cfe7ff,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+/* Đường kẻ */
+
+.warm-line {
+
+    width: 160px;
+
+    height: 2px;
+
+    margin: 25px auto;
+
+    background:
+        rgba(255, 255, 255, 0.6);
+
+    box-shadow:
+        0 0 15px
+        rgba(180, 220, 255, 0.8);
+
+}
+
+
+/* Lời nhắn */
+
+.warm-message {
+
+    font-size: clamp(14px, 2vw, 18px);
+
+    line-height: 1.8;
+
+    letter-spacing: 1px;
+
+    color: #e2edff;
+
+}
+
+
+/* Hiệu ứng xuất hiện */
+
+@keyframes warmAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            scale(0.9);
+
+        filter: blur(10px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+
+    }
+
+}
+
+
+/* Bông tuyết bay */
+
+@keyframes snowFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(8deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   MÀN HÌNH 4 - ĐIỆN THOẠI
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .warm-content {
+
+        width: 88%;
+
+        padding:
+            30px 16px 35px;
+
+        border-radius: 24px;
+
+    }
+
+    .warm-icon {
+
+        font-size: 40px;
+
+        margin-bottom: 12px;
+
+    }
+
+    .warm-small {
+
+        font-size: 13px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 16px;
+
+    }
+
+    .warm-content h1 {
+
+        font-size: 30px;
+
+        line-height: 1.3;
+
+        letter-spacing: 1px;
+
+    }
+
+    .warm-line {
+
+        width: 100px;
+
+        margin: 20px auto;
+
+    }
+
+    .warm-message {
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+}
+```
